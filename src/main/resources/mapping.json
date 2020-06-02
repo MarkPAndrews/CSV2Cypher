@@ -6,7 +6,7 @@
   "java": {
     "classTemplate": "classTemplate.java",
     "propertyTemplate": "propertyTemplate.java",
-    "outputDir": "../target/beans",
+    "outputDir": "../target/beans"
   },
   "importDir": "dev/",
   "toLower": [],
