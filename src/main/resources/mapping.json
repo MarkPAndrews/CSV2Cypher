@@ -1,0 +1,72 @@
+{
+  "cypher" : {
+    "template": "template.cypher",
+    "outputDir": "../target/cypher"
+  },
+  "java": {
+    "classTemplate": "classTemplate.java",
+    "propertyTemplate": "propertyTemplate.java",
+    "outputDir": "../target/beans",
+  },
+  "importDir": "dev/",
+  "toLower": [],
+  "dateFields": [],
+  "ignoreFields":
+    [],
+  "mappings": [{
+    "inputFile": "customers",
+    "label": "Customer",
+    "idColumn": "customerID"
+  }, {
+    "inputFile": "orders",
+    "label": "Order",
+    "relationships":[{
+      "parent": "Customer",
+      "label": "PURCHASED",
+      "idColumn": "customerID",
+      "matchProperty": "customerID"}
+    ],
+    "idColumn": "orderID",
+    "skipResyncFileGeneration": true
+  }, {
+    "inputFile": "order-details",
+    "label": "OrderDetails",
+    "relationships":[{
+      "parent": "Order",
+      "label": "IN_ORDER",
+      "idColumn": "orderID",
+      "matchProperty": "orderID"},
+      {
+        "parent": "Product",
+        "label": "HAS_PRODUCT",
+        "idColumn": "productID",
+        "matchProperty": "productID"}
+    ],
+	"javaParent" : ".Order",
+    "skipResyncFileGeneration": true
+  }, {
+    "inputFile": "products",
+    "label": "Product",
+    "relationships":[{
+      "parent": "Category",
+      "label": "IN_CATEGORY",
+      "idColumn": "categoryID",
+      "matchProperty": "categoryID"},
+      {
+        "parent": "Supplier",
+        "label": "SUPPLIED_BY",
+        "idColumn": "supplierID",
+        "matchProperty": "supplierID"}
+    ],
+    "idColumn": "productID"
+  }, {
+    "inputFile": "categories",
+    "label": "Category",
+    "idColumn": "categoryID"
+  }, {
+    "inputFile": "suppliers",
+    "label": "Suppliers",
+    "idColumn": "supplierID"
+  }
+  ]
+}
